@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: #e7b3ea; /* Código hexadecimal del color rosa que prefieras */
+  background-color: #e7b3ea; /* Código hexadecimal*/
   min-height: 100vh;
   margin: 0;
 }
