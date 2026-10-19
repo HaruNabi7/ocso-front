@@ -1,25 +1,21 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import "./globals.css"
-import Providers from '@/providers'
-import Sidebar from './dashboard/_Components/Sidebar'
+// app/layout.tsx
+import "./globals.css";
 
-const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'Ocso',
-  description: 'Aplicación para gestionar un ocso',
-}
+export const metadata = {
+  title: "Ocso",
+  description: "Sistema de gestión",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="es">
-      <body className={inter.className}><Providers>{children}</Providers></body>
-      <Sidebar></Sidebar>
+      <body className="min-h-screen bg-pink-100 antialiased">
+        {children}
+      </body>
     </html>
-  )
+  );
 }
