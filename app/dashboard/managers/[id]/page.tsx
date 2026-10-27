@@ -1,8 +1,13 @@
 import { API_URL } from "@/constans";
 import { authHeaders } from "@/helpers/authHeaders";
 import { Manager } from "@/entities";
-import ManagerCard from "@/app/dashboard/_Components/ManagerCard";
 import type { ComponentType } from "react";
+import ManagerCard from "../_Components/ManagerCard";
+import DeleteManagerButton from "./_components/DeleteManagerButton";
+
+const ManagerCardWithManager = ManagerCard as unknown as ComponentType<{
+  manager: Manager;
+}>;
 
 export default async function ManagerPage({
   params,
@@ -20,11 +25,13 @@ export default async function ManagerPage({
     }
   });
 
-  const data: Manager = await response.json();
-  const ManagerCardWithManager = ManagerCard as ComponentType<{ manager: Manager }>;
+    const data: Manager = await response.json();
     return (
-        <div>
-            <ManagerCardWithManager manager={data} />
-        </div>
-  );
+    <div className="flex flex-col gap-10 flex-grow-0 items-center justify-center">
+        <ManagerCardWithManager manager={data} />
+    <div className="bg-white shadow-medium rounded-md px-10 py-2">
+      <DeleteManagerButton managerId={data.managerId} />
+    </div>
+  </div>
+);
 }
