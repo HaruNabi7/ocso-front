@@ -1,23 +1,25 @@
-import { count } from "console";
+"use client";
+
+import { usePathname } from "next/navigation";
 import Header from "./_Components/Header";
 import Sidebar from "./_Components/_Siderbar/Sidebar";
 
-export default function DashboardLayout({
-  children, 
-  count,
-}: {
+export default function LayoutDashboard({
+  children,
+  locations,
+}: Readonly<{
   children: React.ReactNode;
-  count : React.ReactNode;
-}) {
+  locations: React.ReactNode;
+}>) {
+  const path = usePathname();
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="bg-orange-50">
       <Header />
-      <div className="flex flex-1">
+      <div className="flex flex-row items-center">
         <Sidebar />
-        <main className="flex-1 p-6 bg-pink-200">
-          {children}
-          {count}
-        </main>
+        {children}
+        {path === "/dashboard" ? locations : null}
       </div>
     </div>
   );
