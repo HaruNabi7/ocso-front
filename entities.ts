@@ -9,12 +9,16 @@ export interface Employee {
 export interface Manager {
   managerId: string;
   managerFullName: string;
+  managerEmail?: string;
+  managerPhoneNumber?: string;
+  managerSalary?: number;
+  location?: Location;   
 }
 
 export interface Location {
-  locationId?: string; // O number, según lo que devuelva tu backend
+  locationId?: string;
   locationName: string;
   locationAddress?: string;
-  locationLatLng?: number[]; // Arreglo para latitud y longitud [lat, lng]
+  locationLatLng?: number[];
   manager?: Manager;
 }

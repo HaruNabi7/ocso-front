@@ -1,5 +1,11 @@
-const ManagerPage = () => {
-    return null
+import ManagerCards from "../_Components/ManagerCard";
+
+const ManagersPage = async () => {
+  return (
+    <div className="w-4/12 h-[90vh] max-h-[90vh] overflow-y-auto">
+      <ManagerCards />
+    </div>
+  )
 }
 
-export default ManagerPage;
+export default ManagersPage;
