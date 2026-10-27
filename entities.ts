@@ -12,7 +12,9 @@ export interface Manager {
 }
 
 export interface Location {
-  locationId?: string;
+  locationId?: string; // O number, según lo que devuelva tu backend
   locationName: string;
+  locationAddress?: string;
+  locationLatLng?: number[]; // Arreglo para latitud y longitud [lat, lng]
   manager?: Manager;
 }
