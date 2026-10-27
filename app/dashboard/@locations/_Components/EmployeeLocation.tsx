@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Employee } from "@/entities";
-import { API_URL, TOKEN_NAME } from "@/constants";
+import { API_URL, TOKEN_NAME } from "@/constans";
 import { cookies } from "next/headers";
 import { Card, CardHeader, CardBody, Divider } from "@nextui-org/react";
 

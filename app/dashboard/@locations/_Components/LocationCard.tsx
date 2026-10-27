@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Location } from "@/entities";
 import { Card, CardHeader, CardBody, Divider } from "@nextui-org/react";
-import { API_URL, TOKEN_NAME } from "@/constants";
+import { API_URL, TOKEN_NAME } from "@/constans";
 import { cookies } from "next/headers";
 import Link from "next/link";
 

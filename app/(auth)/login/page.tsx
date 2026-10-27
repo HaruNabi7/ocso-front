@@ -3,7 +3,7 @@
 import { Button, Input, Spinner } from "@nextui-org/react";
 import Link from "next/link";
 import axios from "axios";
-import { API_URL } from "@/constants";
+import { API_URL } from "@/constans";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -13,7 +13,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     setSubmitting(true);
     e.preventDefault()
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
     let authData: any = {}
     authData.userEmail = formData.get('userEmail')
     authData.userPassword = formData.get('userPassword')
