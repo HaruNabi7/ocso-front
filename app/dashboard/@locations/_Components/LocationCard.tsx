@@ -26,20 +26,18 @@ export default async function LocationCard({ store }: { store: string | string[]
         <p className="w-full">
           Manager:{" "}
           <Link href={{ pathname: `/dashboard/managers/${data.manager?.managerId}` }}>
-            <b>{data.manager?.managerFullName}</b>
+            <b className="underline">{data.manager?.managerFullName}</b>
           </Link>
         </p>
         <p className="w-full">
           Dirección: <b>{data.locationAddress}</b>
         </p>
-        {data.locationLatLng && (
-          <iframe
-            className="border-2 border-orange-800 rounded-md my-2"
-            width="300"
-            height="200"
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAz0Y6dhhUVleZmt7-H4P01QQWCSEz3LBg&q=${data.locationLatLng[0]},${data.locationLatLng[1]}`}
-          ></iframe>
-        )}
+        <iframe
+          className="border-2 border-orange-800 rounded-md my-2"
+          width="300"
+          height="200"
+          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAz0Y6dhhUVleZmt7-H4P01QQWCSEz3LBg&q=${data.locationLatLng[0]},${data.locationLatLng[1]}`}
+        ></iframe>
       </CardBody>
     </Card>
   );

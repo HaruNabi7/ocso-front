@@ -1,41 +1,60 @@
-import { Button, Input } from "@nextui-org/react";
-import { createLocation } from "@/actions/locations/create";
+import { Manager } from "@/entities";
+import { Input, Button } from "@nextui-org/react";
+import updateManager from "@/actions/managers/update";
+import SelectStore from "@/app/dashboard/_Components/SelectStores";
 import { API_URL } from "@/constans";
-import SelectManager from "./SelectManager";
 import { authHeaders } from "@/helpers/authHeaders";
-import { Manager,Location } from "@/entities";
 
-export default async function FormNewLocation({store}: {store: string | string[] | undefined}) {
-  if (store) return;
-
-  const responseManagers = await fetch(`${API_URL}/managers`, {
+export default async function FormUpdateManager({ manager }: { manager: Manager }) {
+  const updateManagerWithId = updateManager.bind(null, manager.managerId);
+  const responseStores = await fetch(`${API_URL}/locations`, {
     headers: {
       ...authHeaders()
-    },
-    next: {
-      tags: ["dashboard:managers"]
     }
-  });
-  const dataManagers: Manager[] = await responseManagers.json()
-  const responseLocation = await fetch(`${API_URL}/locations`, {
-    headers: {
-      ...authHeaders()
-    },
-    next: {
-      tags: ["dashboard:locations"]
-    }
-  });
-
-  const dataLocation: Location[] = await responseLocation.json()
+  })
+  const stores = await responseStores.json()
   return (
-    <form action={createLocation} className="bg-orange-400 py-2 px-4 flex flex-col gap-6 w-full rounded-lg">
-      <h1 className="text-3xl text-white text-center">Crear Tienda</h1>
-      <Input label="Nombre" placeholder="Ocso Jurikiya" name="locationName" />
-      <Input label="Dirección" placeholder="Av De La Luz S/N" name="locationAddress" />
-      <Input label="Latitud" placeholder="-120" name="locationLat" />
-      <Input label="Longitud" placeholder="20" name="locationLng" />
-      <SelectManager managers={dataManagers} locations={dataLocation} />
-      <Button type="submit" color="warning"> Subir </Button>
+    <form action={updateManagerWithId} className="bg-orange-400 rounded-md flex flex-col flex-grow-0 gap-2">
+      <h1 className="text-2x1 text-white font-semibold text-center"> Actualizar Manager </h1>
+      <Input
+        required={true}
+        isRequired
+        label="Nombre completo"
+        defaultValue={manager.managerFullName}
+        placeholder="Josue Reyes"
+        name="managerFullName"
+      />
+      <Input
+        required={true}
+        isRequired
+        label="Correo electronico"
+        defaultValue={manager.managerEmail}
+        placeholder="manager@ocso.com"
+        name="managerEmail"
+      />
+      <Input
+        required={true}
+        isRequired
+        label="Salario"
+        defaultValue={String(manager.managerSalary)}
+        placeholder="12000"
+        name="managerSalary"
+      />
+      <Input
+        required={true}
+        isRequired
+        label="Telefono"
+        defaultValue={manager.managerPhoneNumber}
+        placeholder="4422019009"
+        name="managerPhoneNumber"
+      />
+      <SelectStore 
+        stores={stores}
+        defaultStore={manager?.location?.locationId} 
+      />
+      <Button color="primary" type="submit">
+        Actualizar
+      </Button>
     </form>
   );
 }
