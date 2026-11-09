@@ -1,8 +1,8 @@
-import SelectLocation from "./_components/SelectLocation";
-import LocationCard from "./_components/LocationCard";
-import DeleteLocationButton from "./_components/DeleteLocationButton";
-import UpdateLocation from "./_components/UpdateLocations";
-import FormUpdateLocation from "./_components/FormUpdateLocation";
+import SelectLocation from "./_Components/SelectLocation";
+import LocationCard from "./_Components/LocationCard";
+import DeleteLocationButton from "./_Components/DeleteLocationButton";
+import UpdateLocation from "../_Components/UpdateLocations";
+import FormUpdateLocation
 import { Location } from "@/entities";
 import { API_URL } from "@/constants";
 import { authHeaders } from "@/helpers/authHeaders";
