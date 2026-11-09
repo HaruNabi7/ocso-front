@@ -14,7 +14,7 @@ const ProviderPage = async () => {
     next: {
       tags: ["dashboard:providers"]
     }
-  });
+  }); // T S
 
   const providers: Provider[] = await response.json();
 
