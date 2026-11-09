@@ -1,4 +1,4 @@
-import { API_URL } from "@/constants";
+import { API_URL } from "@/constans";
 import { Product } from "@/entities";
 import { authHeaders } from "@/helpers/authHeaders";
 import FilteredCards from "./_components/FilteredCards";
