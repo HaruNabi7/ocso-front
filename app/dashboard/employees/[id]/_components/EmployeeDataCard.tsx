@@ -1,21 +1,44 @@
-import updateEmployee from "@/actions/employees/update";
 import { Employee } from "@/entities";
-import { Button, Input } from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
+import Link from "next/link";
+import DeleteEmployee from "./DeleteEmployee";
 
-export default function FormUpdateEmployee({ employee }: { employee: Employee }) {
-    const { employeeId } = employee;
-    const updateEmployeeById = updateEmployee.bind(null, employeeId);
-
+export default function EmployeeDataCard({ employee }: { employee: Employee }) {
     return (
-        <form action={updateEmployeeById} className="flex flex-col gap-2 p-8 rounded-md m-2 bg-orange-600 h-fit">
-            <Input label="Nombre" name="employeeName" defaultValue={employee.employeeName} />
-            <Input label="Apellidos" name="employeeLastName" defaultValue={employee.employeeLastName} />
-            <Input label="Correo electrónico" name="employeeEmail" defaultValue={employee.employeeEmail} />
-            <Input label="Num. de Teléfono" name="employeePhoneNumber" defaultValue={employee.employeePhoneNumber} />
-            <Input type="file" name="emplyeePhoto" defaultValue={employee.employeePhoto} />
-            <Button type="submit" color="primary">
-                Actualizar datos
-            </Button>
-        </form>
-    )
+        <div className="flex flex-row items-center gap-2 bg-white rounded-md flex-grow-0 h-fit px-4 m-2">
+            <div className="text-xl flex flex-col h-full justify-between">
+                <div className="h-full py-10">
+                    <h1 className="font-bold">
+                        {employee.employeeName + " " + employee.employeeLastName}
+                    </h1>
+                    <h1> {employee.employeeEmail} </h1>
+                    <h1> {employee.employeePhoneNumber} </h1>
+                </div>
+                <div>
+                    <DeleteEmployee employeeId={employee.employeeId} />
+                </div>
+
+                <Link
+                    className="underline"
+                    href={{
+                        pathname: `/dashboard`,
+                        query: {
+                            store: String(employee.location?.locationId)
+                        }
+                    }}
+                >
+                    <h1> {employee.location?.locationName} </h1>
+                </Link>
+            </div>
+            <div className="h-full py-20 w-1 bg-zinc-300 mx-6" />
+            <Image
+                src={employee.employeePhoto}
+                isZoomed
+                className="object-cover"
+                classNames={{
+                    img: "size-60"
+                }}
+            />
+        </div>
+    );
 }
