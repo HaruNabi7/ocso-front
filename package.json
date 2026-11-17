@@ -1,5 +1,5 @@
 {
-  "name": "ocso-front",
+  "name": "ocso-front-v14",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,22 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1164.0",
     "@nextui-org/react": "^2.6.11",
-    "framer-motion": "^14.3.0",
-    "next": "^14.2.35",
+    "framer-motion": "^14.2.0",
+    "generate-password": "^1.7.1",
+    "next": "14.0.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.7.0"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.0",
     "postcss": "^8",
-    "tailwindcss": "^4.3.3",
+    "tailwindcss": "^3",
     "typescript": "^5"
   }
 }

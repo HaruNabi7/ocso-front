@@ -1,27 +1,26 @@
-import createEmployee from "@/actions/employees/create";
-import { API_URL } from "@/constans";
-import { authHeaders } from "@/helpers/authHeaders";
-import { Button, Input } from "@nextui-org/react";
-import SelectLocations from "./SelectLocation";
+'use client';
 
-export default async function FormCreateEmployee() {
-    const responseLocations = await fetch(`${API_URL}/locations`, {
-        headers: {
-            ...authHeaders(),
-        }
-    })
-    const locations = await responseLocations.json();
+import { Modal, ModalContent, ModalBody, Button, useDisclosure } from "@nextui-org/react";
+import { ReactNode } from "react";
+import { LuPencil } from "react-icons/lu";
+
+export default function CreateEmployee({ children, icon }: { children: ReactNode, icon: ReactNode }) {
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
     return (
-        <form action={createEmployee} className="flex flex-col gap-2 p-8 rounded-md m-2 bg-orange-600 h-fit">
-            <Input isRequired={true} label="Nombre" name="employeeName" placeholder="Marco" />
-            <Input isRequired={true} label="Apellidos" name="employeeLastName" placeholder="Aurelio" />
-            <Input isRequired={true} label="Correo electrónico" name="employeeEmail" placeholder="marco@marco.com" />
-            <Input isRequired={true} label="Num. de Teléfono" name="employeePhoneNumber" placeholder="444XXXXX" />
-            <Input type="file" name="employeePhoto" />
-            <SelectLocations stores={locations} />
-            <Button type="submit" color="primary">
-                Crear empleado
-            </Button>
-        </form>
-    )
+        <div>
+            <Button onPress={onOpen} color="primary">{icon}</Button>
+            <Modal className="bg-orange-400" isOpen={isOpen} onOpenChange={onOpenChange}>
+                <ModalContent className="w-full">
+                    {() => (
+                        <>
+                            <ModalBody>
+                                {children}
+                            </ModalBody>
+                        </>
+                    )}
+                </ModalContent>
+            </Modal>
+        </div>
+    );
 }
