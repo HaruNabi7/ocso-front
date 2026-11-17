@@ -1,24 +1,24 @@
-import updateUser from "@/actions/users/update";
-import { User } from "@/entities"
+'use client'
+import { Manager } from "@/entities";
+import registerManager from "@/actions/users/register-manager";
 import { Button, Input } from "@nextui-org/react";
 import { generate } from "generate-password";
 import { useState } from "react";
 import { LuEye } from "react-icons/lu";
 
-export default function FormUpdateUser({ user }: { user: User }) {
-    const { userId } = user;
+export default function FormCreateUserManager({ manager }: { manager: Manager }) {
     const [password, setPassword] = useState<string>();
     const [visible, setVisible] = useState<boolean>(false);
-    const updateUserById = updateUser.bind(null, userId)
+    const { managerId } = manager;
+    const registerManagerById = registerManager.bind(null, managerId)
     return (
-        <form action={updateUserById} className="py-10 flex flex-col gap-2">
+        <form action={registerManagerById} className="py-10 flex flex-col gap-2">
             <h1 className="text-white text-xl font-bold text-center">
-                Actualizar Usuario
+                Crear Usuario
             </h1>
-            <Input defaultValue={user.userEmail} name="userEmail" label="Correo de cuenta" />
+            <Input name="userEmail" label="Correo de cuenta" />
             <Input
                 value={password}
-                defaultValue={user.userPassword}
                 type={visible ? "text" : "password"}
                 name="userPassword"
                 label="Contraseña"
@@ -36,7 +36,7 @@ export default function FormUpdateUser({ user }: { user: User }) {
                 Generar Contraseña
             </Button>
             <Button color="primary" type="submit">
-                Actualizar Usuario
+                Crear Usuario
             </Button>
         </form>
     )

@@ -1,8 +1,9 @@
-import { API_URL } from "@/constans";
+import { API_URL } from "@/constants";
 import { authHeaders } from "@/helpers/authHeaders";
 import { Manager } from "@/entities";
 import ManagerCard from "./_components/ManagerCard";
 import DeleteManagerButton from "./_components/DeleteManagerButton";
+import FormUpdateLocation from "../../@locations/_components/FormUpdateLocation";
 import FormUpdateManager from "./_components/FormUpdateManager";
 import UpdateManager from "./_components/UpdateManager";
 
@@ -18,21 +19,21 @@ export default async function ManagerPage({
       ...authHeaders(),
     },
     next: {
-        tags: [`dashboard:managers:${params.id}`]
+      tags: [`dashboard:managers:${params.id}`]
     }
   });
 
-    const data: Manager = await response.json();
-    return (
+  const data: Manager = await response.json();
+  return (
     <div className="flex flex-col gap-10 flex-grow-0 items-center justify-center">
-        <ManagerCard manager={data} />
-    <div className="bg-white shadow-medium rounded-md px-10 py-2 flex flex-row flex-grow-0 gap-2">
+      <ManagerCard manager={data} />
+      <div className="bg-white shadow-medium rounded-md px-10 py-2 flex flex-row flex-grow-0 gap-2">
         <UpdateManager>
-            <FormUpdateManager manager={data} />
+          <FormUpdateManager manager={data} />
         </UpdateManager>
-      <DeleteManagerButton managerId={data.managerId} />
-      <FormUpdateManager manager={data} />
+        <DeleteManagerButton managerId={data.managerId} />
+        <FormUpdateManager manager={data} />
+      </div>
     </div>
-  </div>
-);
+  );
 }
